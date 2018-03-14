@@ -3,6 +3,7 @@ import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
 import ar.com.fdvs.dj.domain.DynamicReport;
 import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
+import ar.com.fdvs.dj.domain.constants.Page;
 import ar.com.fdvs.dj.util.SortUtils;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -46,6 +47,9 @@ public class Demo {
                 .setSubtitle("This report was generated at " + new Date())
                 .setPrintBackgroundOnOddRows(true)
                 .setUseFullPageWidth(true); // setUseFullPageWidth( <boolean> ) : 最大页面宽度
+
+        // 设置页面尺寸（当前为A4横版）
+        drb.setPageSizeAndOrientation(Page.Page_A4_Landscape());
 
 
         DynamicReport dr = drb.build();
