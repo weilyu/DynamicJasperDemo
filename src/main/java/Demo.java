@@ -3,6 +3,8 @@ import ar.com.fdvs.dj.core.layout.ClassicLayoutManager;
 import ar.com.fdvs.dj.domain.DynamicReport;
 import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.FastReportBuilder;
+import ar.com.fdvs.dj.domain.builders.StyleBuilder;
+import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.Page;
 import ar.com.fdvs.dj.util.SortUtils;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -51,6 +53,9 @@ public class Demo {
         // 设置页面尺寸（当前为A4横版）
         drb.setPageSizeAndOrientation(Page.Page_A4_Landscape());
 
+        // 设置Title样式
+        drb.setTitleStyle(getTitleStyle());
+
 
         DynamicReport dr = drb.build();
 
@@ -64,6 +69,17 @@ public class Demo {
         // 输出为HTML
         JasperExportManager.exportReportToHtmlFile(jp, "report.html");
 
+    }
+
+    /**
+     * 获取Title样式
+     *
+     * @return
+     */
+    private static Style getTitleStyle() {
+        Font font = new Font(28, "MS Mincho", "MSMINCHO.TTF",
+                Font.PDF_ENCODING_Identity_H_Unicode_with_horizontal_writing, true);
+        return new StyleBuilder(false).setFont(font).build();
     }
 
     /**
